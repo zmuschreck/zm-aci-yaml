@@ -1,0 +1,32 @@
+apiVersion: 2021-07-01
+location: westeurope
+name: CraigLeon
+properties:
+  containers:
+  - name: zm-containergruppe-01
+    properties:
+      image: mcr.microsoft.com/azuredocs/aci-helloworld:latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+      - port: 8080
+  - name: zm-containergruppe-02
+    properties:
+      image: mcr.microsoft.com/azuredocs/aci-tutorial-sidecar
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 80
+    - protocol: tcp
+      port: 8080
+tags: {Umgebung: sandbox, tn: Ulrich, Kostenstelle: 42, Datenklasse: geheim}
+type: Microsoft.ContainerInstance/containerGroups
